@@ -2,3 +2,13 @@ Revision history for RPi-Accelerometer-ADXL335
 
 0.01 UNREL
     - Auto generated distribution with Dist::Mgr
+    - Added the OO Perl interface; pure Perl, riding on any ADC object
+      that provides volts() or percent() (RPi::ADC::ADS and
+      RPi::ADC::MCP3008 both work as-is)
+    - Added g(), volts(), tilt(), calibrate(), zero_g(), sensitivity()
+      and adc()
+    - Added hardware-free parameter validation and mocked logic test suites
+    - Added examples/gforce.pl and examples/tilt.pl
+    - Added the TECHNICAL INFORMATION POD section with the ADXL335
+      datasheet specifications, wiring, ratiometric scaling, bandwidth,
+      self-test and axis orientation details

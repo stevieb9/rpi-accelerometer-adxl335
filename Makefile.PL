@@ -9,9 +9,23 @@ my %WriteMakefileArgs = (
     VERSION_FROM     => 'lib/RPi/Accelerometer/ADXL335.pm',
     ABSTRACT_FROM    => 'lib/RPi/Accelerometer/ADXL335.pm',
     LICENSE          => 'artistic_2',
+    PL_FILES         => {},
     MIN_PERL_VERSION => '5.006',
     META_MERGE => {
         'meta-spec' => { version => 2 },
+
+        # The ADC transport is chosen and instantiated by the caller,
+        # so neither ADC distribution is a hard requirement; both build
+        # only where their buses exist, and this module tests anywhere
+
+        prereqs => {
+            runtime => {
+                recommends => {
+                    'RPi::ADC::ADS'     => '0',
+                    'RPi::ADC::MCP3008' => '0',
+                },
+            },
+        },
         resources   => {
             repository => {
                 type => 'git',
@@ -30,8 +44,7 @@ my %WriteMakefileArgs = (
         'Test::More' => '0',
     },
     PREREQ_PM => {
-        #'ABC'              => '1.6',
-        #'Foo::Bar::Module' => '5.0401',
+        'Scalar::Util' => 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'RPi-Accelerometer-ADXL335-*' },
